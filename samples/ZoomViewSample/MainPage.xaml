@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:zoom="clr-namespace:Plugin.Maui.ZoomView;assembly=Plugin.Maui.ZoomView"
+             x:Class="ZoomViewSample.MainPage">
+
+        <VerticalStackLayout BackgroundColor="red">
+            <zoom:ZoomView BackgroundColor="Green">
+                <StackLayout>
+                    <Label Text="Hello This is zoomView !"/>
+                     <Image 
+                Source="dotnet_bot.png" 
+                Aspect="AspectFit"
+                SemanticProperties.Description="dot net bot in a hovercraft number nine" />
+                <Button Text="Button"/>
+                <Entry Placeholder="Enter text..."/>
+                </StackLayout>
+            </zoom:ZoomView>         
+        </VerticalStackLayout>
+
+</ContentPage>
