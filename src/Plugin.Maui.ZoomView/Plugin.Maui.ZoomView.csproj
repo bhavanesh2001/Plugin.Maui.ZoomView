@@ -22,13 +22,14 @@
 		<!-- NuGet package metadata -->
 		<PackageId>Plugin.Maui.ZoomView</PackageId>
 		<Authors>bhavanesh2001</Authors>
+		<IsPackable>True</IsPackable>
 		<Title>.NET MAUI ZoomView Plugin</Title>
 		<Description>Plugin.Maui.ZoomView is a .NET MAUI plugin that provides a customizable zoomable view for cross-platform applications. It allows developers to easily integrate zooming functionality into their applications, supporting Android and iOS platforms.</Description>
 		<PackageTags>dotnet-maui;maui;plugin;ios;android;</PackageTags>
 		<RepositoryUrl>https://github.com/bhavanesh2001/Plugin.Maui.ZoomView</RepositoryUrl>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<RepositoryType>git</RepositoryType>
-		<IncludeSymbols>True</IncludeSymbols>
+		<IncludeSymbols>true</IncludeSymbols>
 		<PublishRepositoryUrl>true</PublishRepositoryUrl>
 		<EmbedUntrackedSources>true</EmbedUntrackedSources>
 		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
@@ -36,7 +37,6 @@
 		<PackageIcon>icon.png</PackageIcon>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 		<PackageProjectUrl>https://github.com/bhavanesh2001/Plugin.Maui.ZoomView</PackageProjectUrl>
-		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 	</PropertyGroup>
 
 	<ItemGroup>
