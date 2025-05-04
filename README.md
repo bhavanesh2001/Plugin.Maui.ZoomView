@@ -4,24 +4,30 @@
 Plugin.Maui.ZoomView is a .NET MAUI plugin that provides a customizable zoomable view for cross-platform applications. It allows developers to easily integrate zooming functionality into their applications, supporting **Android** and **iOS** platforms.
 
 ---
+## 🌐 Supported Platforms
 
-## Features
-✨ Smooth zooming and panning functionality  
-✨ Easy-to-use API for developers  
+| Platform        | Status        |
+|----------------|----------------|
+| 🤖 **Android**  | ✅ Supported   |
+| 🍎 **iOS**      | ✅ Supported   |
 
----
-
-## Supported Platforms
-- **Android**
-- **iOS**
 
 ---
 
 ## Getting Started
+## Bindable Properties
 
-### Prerequisites
-- 🛠️ **.NET 8.0 or later**
-- 🛠️ **.NET MAUI installed and configured**
+The `ZoomView` control exposes the following bindable properties:
+
+| Property              | Type    | Default | Description |
+|-----------------------|---------|---------|-------------|
+| `Content`             | `View`  | `null`  | The content to be displayed inside the zoomable area. |
+| `ZoomInOnDoubleTap`   | `bool`  | `true`  | If `true`, a double-tap will zoom in when the zoom level is at default. |
+| `ZoomOutOnDoubleTap`  | `bool`  | `true`  | If `true`, a double-tap will reset zoom when already zoomed in. |
+
+
+
+
 
 ### Installation
 1. Add the `Plugin.Maui.ZoomView` package to your .NET MAUI project. You can do this via NuGet Package Manager or by running the following command:
@@ -59,8 +65,8 @@ Plugin.Maui.ZoomView is a .NET MAUI plugin that provides a customizable zoomable
        </zoomview:ZoomView>
    </ContentPage>
    ```
-
-2. Customize the `ZoomView` settings in your code-behind or XAML as needed.
+> ⚠️ **Note:**  
+> `ZoomView` is best suited for non-interactive content like `Image`, `Label`, or static custom views. While interactive controls (e.g., `Entry`, `Editor`, `Button`) can be placed inside, they may not behave reliably during zoom or pan. Use with caution.
 
 ---
 
