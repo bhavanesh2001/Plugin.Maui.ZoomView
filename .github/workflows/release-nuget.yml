@@ -22,7 +22,7 @@ jobs:
         id: get_version
         run: |
           $version="${{github.ref_name}}".TrimStart("v")
-          echo "version-without-v=$version" >> $GITHUB_ENV
+          "version-without-v=$version" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
 
       - name: Pack
         run: dotnet pack src/Plugin.Maui.ZoomView/Plugin.Maui.ZoomView.csproj -c Release -p:PackageVersion=${{ env.version-without-v }}
