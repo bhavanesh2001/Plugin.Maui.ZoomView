@@ -1,5 +1,3 @@
-
-
 using Microsoft.Maui.Platform;
 using Plugin.Maui.ZoomView.Platforms.iOS;
 using UIKit;
@@ -13,8 +11,14 @@ public partial class ZoomViewHandler
        return new PlatformZoomView();
     }
 
+    protected override void DisconnectHandler(PlatformZoomView platformView)
+    {
+        platformView.Disconnect();
+        base.DisconnectHandler(platformView);
+    }
+
     
-    public static void MapContent(ZoomViewHandler handler, ZoomView view)
+    public static void MapContent(ZoomViewHandler handler, IZoomView view)
     {
         if(handler.MauiContext is null) throw new InvalidOperationException("MauiContext can not be null");
         
@@ -25,4 +29,13 @@ public partial class ZoomViewHandler
         }
         
     }
+
+    public static void MapZoomOnDoubleTap(ZoomViewHandler handler, IZoomView view)
+    {
+       if(handler is not null && handler.PlatformView is not null)
+       {    
+            handler.PlatformView.SetupDoubleTapGesture(view.ZoomInOnDoubleTap,view.ZoomOutOnDoubleTap);
+       }
+    }
+
 }

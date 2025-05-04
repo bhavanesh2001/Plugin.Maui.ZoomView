@@ -10,6 +10,8 @@ namespace Plugin.Maui.ZoomView.Platforms.Android;
 public class PlatformZoomView : FrameLayout
 {
 	#region  Properties
+	bool _zoomInOnDoubleTap;
+	bool _zoomInOutDoubleTap;
 	float zoom = 1.0f;
 	float maxZoom = 2.0f;
 	float smoothZoom = 1.0f;
@@ -184,9 +186,9 @@ public class PlatformZoomView : FrameLayout
 				{
 					if (Java.Lang.JavaSystem.CurrentTimeMillis() - lastTapTime < 500)
 					{
-						if (smoothZoom == 1.0f)
+						if (smoothZoom == 1.0f && _zoomInOnDoubleTap)
 							SmoothZoomTo(maxZoom, x, y);
-						else
+						else if (_zoomInOutDoubleTap)
 							SmoothZoomTo(1.0f, Width / 2.0f, Height / 2.0f);
 						lastTapTime = 0;
 						e.Action = MotionEventActions.Cancel;
@@ -258,5 +260,11 @@ public class PlatformZoomView : FrameLayout
 
 	#endregion
 
-
+	#region  Public
+	public void SetZoomOnDoubleTap(bool zoomInOnDoubleTap, bool zoomOutonDoubleTap)
+	{
+		_zoomInOnDoubleTap = zoomInOnDoubleTap;
+		_zoomInOutDoubleTap = zoomOutonDoubleTap;
+	}
+	#endregion
 }

@@ -9,13 +9,15 @@ using PlatformView = Plugin.Maui.ZoomView.Platforms.iOS.PlatformZoomView;
 
 namespace Plugin.Maui.ZoomView;
 
-public partial class ZoomViewHandler : ViewHandler<ZoomView, PlatformView>
+public partial class ZoomViewHandler : ViewHandler<IZoomView, PlatformView>
 {
-     public static IPropertyMapper<ZoomView, ZoomViewHandler> PropertyMapper = new PropertyMapper<ZoomView, ZoomViewHandler>(ViewHandler.ViewMapper)
-     {
-            [nameof(ZoomView.Content)] = MapContent,
-      };
-    public ZoomViewHandler() : base(PropertyMapper, null)
-    {
-    }
+  public static IPropertyMapper<IZoomView, ZoomViewHandler> PropertyMapper = new PropertyMapper<IZoomView, ZoomViewHandler>(ViewHandler.ViewMapper)
+  {
+    [nameof(IZoomView.Content)] = MapContent,
+    [nameof(IZoomView.ZoomInOnDoubleTap)] = MapZoomOnDoubleTap,
+    [nameof(IZoomView.ZoomOutOnDoubleTap)] = MapZoomOnDoubleTap,
+  };
+  public ZoomViewHandler() : base(PropertyMapper, null)
+  {
+  }
 }

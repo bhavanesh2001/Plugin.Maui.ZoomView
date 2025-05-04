@@ -3,19 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:zoom="clr-namespace:Plugin.Maui.ZoomView;assembly=Plugin.Maui.ZoomView"
              x:Class="ZoomViewSample.MainPage">
-
-        <VerticalStackLayout BackgroundColor="red">
-            <zoom:ZoomView BackgroundColor="Green">
-                <StackLayout>
-                    <Label Text="Hello This is zoomView !"/>
-                     <Image 
+            <zoom:ZoomView VerticalOptions="Center">
+                <Image 
                 Source="dotnet_bot.png" 
                 Aspect="AspectFit"
                 SemanticProperties.Description="dot net bot in a hovercraft number nine" />
-                <Button Text="Button"/>
-                <Entry Placeholder="Enter text..."/>
-                </StackLayout>
-            </zoom:ZoomView>         
-        </VerticalStackLayout>
-
+            </zoom:ZoomView>        
 </ContentPage>
