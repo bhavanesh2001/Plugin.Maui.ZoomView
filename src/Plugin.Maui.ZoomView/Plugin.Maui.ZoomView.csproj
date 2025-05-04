@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net9.0-android;net9.0-ios;</TargetFrameworks>
+		<TargetFrameworks>net8.0-android;net8.0-ios;</TargetFrameworks>
 		<!-- <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net9.0-windows10.0.19041.0</TargetFrameworks> -->
 		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
 		<!-- <TargetFrameworks>$(TargetFrameworks);net10.0-tizen</TargetFrameworks> -->
@@ -10,8 +10,8 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 
-		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">15.0</SupportedOSPlatformVersion>
-		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">15.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">11.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">13.1</SupportedOSPlatformVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
 		<!-- <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
 		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion> -->
@@ -21,14 +21,22 @@
 	<PropertyGroup>
 		<!-- NuGet package metadata -->
 		<PackageId>Plugin.Maui.ZoomView</PackageId>
-		<Version>1.0.0</Version>
-		<Authors>YourName</Authors>
-		<Company>YourCompany</Company>
-		<Description>A MAUI plugin for zoomable views.</Description>
-		<PackageTags>MAUI;Zoom;Plugin</PackageTags>
-		<RepositoryUrl>https://github.com/YourRepo/Plugin.Maui.ZoomView</RepositoryUrl>
+		<Version>8.0.0</Version>
+		<Authors>bhavanesh2001</Authors>
+		<Title>.NET MAUI ZoomView Plugin</Title>
+		<Description>Plugin.Maui.ZoomView is a .NET MAUI plugin that provides a customizable zoomable view for cross-platform applications. It allows developers to easily integrate zooming functionality into their applications, supporting Android and iOS platforms.</Description>
+		<PackageTags>dotnet-maui;maui;plugin;ios;android;</PackageTags>
+		<RepositoryUrl>https://github.com/bhavanesh2001/Plugin.Maui.ZoomView</RepositoryUrl>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<PackageProjectUrl>https://github.com/YourRepo/Plugin.Maui.ZoomView</PackageProjectUrl>
+		<RepositoryType>git</RepositoryType>
+		<IncludeSymbols>True</IncludeSymbols>
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<EmbedUntrackedSources>true</EmbedUntrackedSources>
+		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+		<DebugType>portable</DebugType>
+		<PackageIcon>icon.png</PackageIcon>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+		<PackageProjectUrl>https://github.com/bhavanesh2001/Plugin.Maui.ZoomView</PackageProjectUrl>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 	</PropertyGroup>
 
@@ -38,6 +46,12 @@
 
 	<ItemGroup>
 	  <Folder Include="Platforms/MacCatalyst/" />
+	  <Folder Include="Platforms/Tizen/" />
+	  <Folder Include="Platforms/Windows/" />
 	</ItemGroup>
 
+	<!-- Package additions -->
+	<ItemGroup>
+		<None Include="..\..\nuget.png" PackagePath="icon.png" Pack="true" />
+	</ItemGroup>
 </Project>
