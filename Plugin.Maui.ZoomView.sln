@@ -5,11 +5,11 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{827E0CD3-B72D-47B6-A68D-7590B98EB39B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plugin.Maui.ZoomView", "src\Plugin.Maui.ZoomView\Plugin.Maui.ZoomView.csproj", "{259B9281-16B7-4841-A77D-3B59F8F0C82B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Plugin.Maui.ZoomView", "src\Plugin.Maui.ZoomView\Plugin.Maui.ZoomView.csproj", "{259B9281-16B7-4841-A77D-3B59F8F0C82B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{5D20AA90-6969-D8BD-9DCD-8634F4692FDA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZoomViewSample", "samples\ZoomViewSample\ZoomViewSample.csproj", "{63655CFB-240E-4658-9AAC-DC61DADD2C27}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZoomViewSample", "samples\ZoomViewSample\ZoomViewSample.csproj", "{63655CFB-240E-4658-9AAC-DC61DADD2C27}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,6 +35,7 @@ Global
 		{259B9281-16B7-4841-A77D-3B59F8F0C82B}.Release|x86.Build.0 = Release|Any CPU
 		{63655CFB-240E-4658-9AAC-DC61DADD2C27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{63655CFB-240E-4658-9AAC-DC61DADD2C27}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63655CFB-240E-4658-9AAC-DC61DADD2C27}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
 		{63655CFB-240E-4658-9AAC-DC61DADD2C27}.Debug|x64.ActiveCfg = Debug|Any CPU
 		{63655CFB-240E-4658-9AAC-DC61DADD2C27}.Debug|x64.Build.0 = Debug|Any CPU
 		{63655CFB-240E-4658-9AAC-DC61DADD2C27}.Debug|x86.ActiveCfg = Debug|Any CPU

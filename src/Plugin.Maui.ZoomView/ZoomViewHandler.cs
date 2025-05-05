@@ -4,7 +4,10 @@ using Microsoft.Maui.Handlers;
 using PlatformView = Plugin.Maui.ZoomView.Platforms.Android.PlatformZoomView;
 #elif IOS
 using PlatformView = Plugin.Maui.ZoomView.Platforms.iOS.PlatformZoomView;
+#else
+using PlatformView = Plugin.Maui.ZoomView.PlatformZoomView;
 #endif
+
 
 
 namespace Plugin.Maui.ZoomView;
@@ -17,7 +20,10 @@ public partial class ZoomViewHandler : ViewHandler<IZoomView, PlatformView>
     [nameof(IZoomView.ZoomInOnDoubleTap)] = MapZoomOnDoubleTap,
     [nameof(IZoomView.ZoomOutOnDoubleTap)] = MapZoomOnDoubleTap,
   };
-  public ZoomViewHandler() : base(PropertyMapper, null)
+
+   
+
+    public ZoomViewHandler() : base(PropertyMapper, null)
   {
   }
 }
