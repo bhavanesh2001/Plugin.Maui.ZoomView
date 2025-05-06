@@ -54,6 +54,15 @@ public class ZoomView : View, IZoomView
 		get => (float)GetValue(ZoomProperty);
 		set => SetValue(ZoomProperty, value);
 	}
+    protected override void OnBindingContextChanged()
+    {
+        base.OnBindingContextChanged();
+
+        if (Content is VisualElement ve)
+        {
+            ve.BindingContext = BindingContext;
+        }
+    }
 }
 
 public static class AppBuilderExtension

@@ -51,7 +51,8 @@ public class PlatformZoomView : FrameLayout
 		else if (e.PointerCount == 2)
 			ProcessDoubleTocuhEvent(e);
 
-		return true;
+        PostInvalidateOnAnimation();
+        return true;
 	}
 
 	protected override void DispatchDraw(Canvas canvas)
@@ -110,9 +111,9 @@ public class PlatformZoomView : FrameLayout
 			canvas.Restore();
 		}
 
-		RootView?.Invalidate();
-		Invalidate();
-	}
+		if(animating)
+		PostInvalidateOnAnimation();
+    }
 
 	protected override void OnLayout(bool changed, int l, int t, int r, int b)
 	{
