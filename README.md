@@ -1,4 +1,6 @@
 # Plugin.Maui.ZoomView
+[![NuGet](https://img.shields.io/nuget/v/Plugin.Maui.ZoomView.svg)](https://www.nuget.org/packages/Plugin.Maui.ZoomView/) [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+
 
 ## Overview
 Plugin.Maui.ZoomView is a .NET MAUI plugin that provides a customizable zoomable view for cross-platform applications. It allows developers to easily integrate zooming functionality into their applications, supporting **Android** and **iOS** platforms.
@@ -67,11 +69,6 @@ The `ZoomView` control exposes the following bindable properties:
    ```
 > ⚠️ **Note:**  
 > `ZoomView` is best suited for non-interactive content like `Image`, `Label`, or static custom views. While interactive controls (e.g., `Entry`, `Editor`, `Button`) can be placed inside, they may not behave reliably during zoom or pan. Use with caution.
-
----
-
-## Sample Application
-📂 A sample application demonstrating the usage of `Plugin.Maui.ZoomView` is available in the `samples/ZoomViewSample` directory. You can run the sample to see the plugin in action.
 
 ---
 
