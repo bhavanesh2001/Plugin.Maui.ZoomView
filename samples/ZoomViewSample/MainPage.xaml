@@ -3,10 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:zoom="clr-namespace:Plugin.Maui.ZoomView;assembly=Plugin.Maui.ZoomView"
              x:Class="ZoomViewSample.MainPage">
-            <zoom:ZoomView VerticalOptions="Center">
-                <Image 
-                Source="dotnet_bot.png" 
-                Aspect="AspectFit"
-                SemanticProperties.Description="dot net bot in a hovercraft number nine" />
-            </zoom:ZoomView>        
+    <VerticalStackLayout Spacing="16" Padding="24">
+        <zoom:ZoomView x:Name="MyZoomView" VerticalOptions="Center" LongPressedCommand="{Binding LongPressedCommand}">
+            <Image x:Name="MyImage"
+                   Source="dotnet_bot.png"
+                   Aspect="AspectFit"
+                   SemanticProperties.Description="dot net bot in a hovercraft number nine" />
+        </zoom:ZoomView>
+        <Button Text="Reset Zoom" Clicked="OnResetZoomClicked" />
+    </VerticalStackLayout>
 </ContentPage>

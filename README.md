@@ -29,6 +29,14 @@ The `ZoomView` control exposes the following bindable properties:
 | `Content`             | `View`  | `null`  | The content to be displayed inside the zoomable area. |
 | `ZoomInOnDoubleTap`   | `bool`  | `true`  | If `true`, a double-tap will zoom in when the zoom level is at default. |
 | `ZoomOutOnDoubleTap`  | `bool`  | `true`  | If `true`, a double-tap will reset zoom when already zoomed in. |
+| `LongPressedCommand`  | `ICommand` | `null` | Command to execute when the view is long pressed. |
+
+
+## Methods
+
+| Method   | Description |
+|----------|-------------|
+| `Reset()` | Resets the zoom and position to the initial state. |
 
 
 
@@ -57,6 +65,7 @@ The `ZoomView` control exposes the following bindable properties:
 
 ---
 
+
 ## Usage
 
 1. Add the `ZoomView` control to your XAML file:
@@ -65,10 +74,33 @@ The `ZoomView` control exposes the following bindable properties:
                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                 xmlns:zoomview="clr-namespace:Plugin.Maui.ZoomView;assembly=Plugin.Maui.ZoomView"
                 x:Class="YourNamespace.MainPage">
-       <zoomview:ZoomView>
+       <zoomview:ZoomView
+           LongPressedCommand="{Binding LongPressedCommand}">
            <!-- Add your content here -->
        </zoomview:ZoomView>
    </ContentPage>
+   ```
+
+2. To reset the zoom programmatically, call the `Reset()` method:
+   ```csharp
+   MyZoomView.Reset();
+   ```
+
+3. To handle long press, bind the `LongPressedCommand` property to a command in your ViewModel or code-behind:
+   ```csharp
+   public ICommand LongPressedCommand { get; }
+
+   public MainPage()
+   {
+       InitializeComponent();
+       LongPressedCommand = new Command(OnLongPressed);
+       MyZoomView.LongPressedCommand = LongPressedCommand;
+   }
+
+   private async void OnLongPressed()
+   {
+       await DisplayAlert("Long Press", "ZoomView was long pressed!", "OK");
+   }
    ```
 > ⚠️ **Note:**  
 > `ZoomView` is best suited for non-interactive content like `Image`, `Label`, or static custom views. While interactive controls (e.g., `Entry`, `Editor`, `Button`) can be placed inside, they may not behave reliably during zoom or pan. Use with caution.
