@@ -4,11 +4,13 @@ using Paint = Android.Graphics.Paint;
 using Color = Android.Graphics.Color;
 using Android.Views;
 using Android.Widget;
+using Android.OS;
 
 namespace Plugin.Maui.ZoomView.Platforms.Android;
 
 public class PlatformZoomView : FrameLayout
 {
+	public event EventHandler? LongPressed;
 	#region  Properties
 	bool _zoomInOnDoubleTap;
 	bool _zoomInOutDoubleTap;
@@ -38,6 +40,10 @@ public class PlatformZoomView : FrameLayout
 	{
 		ClipToOutline = true;
 	}
+
+	private const int LongPressTimeout = 2000; // ms
+	private bool _longPressTriggered = false;
+	private Handler? _handler;
 	#endregion
 
 	#region  Override
@@ -51,8 +57,8 @@ public class PlatformZoomView : FrameLayout
 		else if (e.PointerCount == 2)
 			ProcessDoubleTocuhEvent(e);
 
-        PostInvalidateOnAnimation();
-        return true;
+		PostInvalidateOnAnimation();
+		return true;
 	}
 
 	protected override void DispatchDraw(Canvas canvas)
@@ -113,7 +119,7 @@ public class PlatformZoomView : FrameLayout
 
 		if(animating)
 		PostInvalidateOnAnimation();
-    }
+	}
 
 	protected override void OnLayout(bool changed, int l, int t, int r, int b)
 	{
@@ -166,6 +172,16 @@ public class PlatformZoomView : FrameLayout
 				touchLastX = x;
 				touchLastY = y;
 				scrolling = false;
+				_longPressTriggered = false;
+				_handler = new Handler(Looper.MainLooper);
+				_handler.PostDelayed(() =>
+				{
+					if (!_longPressTriggered && smoothZoom == 1.0f)
+					{
+						_longPressTriggered = true;
+						LongPressed?.Invoke(this, EventArgs.Empty);
+					}
+				}, LongPressTimeout);
 				break;
 			case MotionEventActions.Move:
 				if (scrolling || (smoothZoom > 1.0f && l > 30.0f))
@@ -175,14 +191,17 @@ public class PlatformZoomView : FrameLayout
 						scrolling = true;
 						e.Action = MotionEventActions.Cancel;
 						base.DispatchTouchEvent(e);
+						_handler?.RemoveCallbacksAndMessages(null);
 						return;
 					}
 					smoothZoomX -= dx / zoom;
 					smoothZoomY -= dy / zoom;
+					_handler?.RemoveCallbacksAndMessages(null);
 					return;
 				}
 				break;
 			case MotionEventActions.Up:
+				_handler?.RemoveCallbacksAndMessages(null);
 				if (l < 30.0f)
 				{
 					if (Java.Lang.JavaSystem.CurrentTimeMillis() - lastTapTime < 500)
@@ -200,11 +219,24 @@ public class PlatformZoomView : FrameLayout
 					PerformClick();
 				}
 				break;
+			case MotionEventActions.Cancel:
+			_handler?.RemoveCallbacksAndMessages(null);
+				break;
 		}
+	
 		e.SetLocation(zoomX + (x - 0.5f * Width) / zoom, zoomY + (y - 0.5f * Height) / zoom);
 		base.DispatchTouchEvent(e);
 	}
-
+	public void ResetZoom()
+	{
+		smoothZoom = 1.0f;
+		zoom = 1.0f;
+		smoothZoomX = Width / 2.0f;
+		smoothZoomY = Height / 2.0f;
+		zoomX = Width / 2.0f;
+		zoomY = Height / 2.0f;
+		Invalidate();
+	}
 	private void ProcessDoubleTocuhEvent(MotionEvent e)
 	{
 		float x1 = e.GetX(0);
