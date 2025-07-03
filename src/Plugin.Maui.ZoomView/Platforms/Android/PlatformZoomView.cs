@@ -4,6 +4,7 @@ using Paint = Android.Graphics.Paint;
 using Color = Android.Graphics.Color;
 using Android.Views;
 using Android.Widget;
+using Android.OS;
 
 namespace Plugin.Maui.ZoomView.Platforms.Android;
 
@@ -42,7 +43,7 @@ public class PlatformZoomView : FrameLayout
 
 	private const int LongPressTimeout = 2000; // ms
 	private bool _longPressTriggered = false;
-	private System.Timers.Timer? _longPressTimer;
+	private Handler? _handler;
 	#endregion
 
 	#region  Override
@@ -172,7 +173,7 @@ public class PlatformZoomView : FrameLayout
 				touchLastY = y;
 				scrolling = false;
 				_longPressTriggered = false;
-				_handler = new Android.OS.Handler();
+				_handler = new Handler(Looper.MainLooper);
 				_handler.PostDelayed(() =>
 				{
 					if (!_longPressTriggered && smoothZoom == 1.0f)
@@ -190,17 +191,17 @@ public class PlatformZoomView : FrameLayout
 						scrolling = true;
 						e.Action = MotionEventActions.Cancel;
 						base.DispatchTouchEvent(e);
-						_longPressTimer?.Stop();
+						_handler?.RemoveCallbacksAndMessages(null);
 						return;
 					}
 					smoothZoomX -= dx / zoom;
 					smoothZoomY -= dy / zoom;
-					_longPressTimer?.Stop();
+					_handler?.RemoveCallbacksAndMessages(null);
 					return;
 				}
 				break;
 			case MotionEventActions.Up:
-				_longPressTimer?.Stop();
+				_handler?.RemoveCallbacksAndMessages(null);
 				if (l < 30.0f)
 				{
 					if (Java.Lang.JavaSystem.CurrentTimeMillis() - lastTapTime < 500)
@@ -219,7 +220,7 @@ public class PlatformZoomView : FrameLayout
 				}
 				break;
 			case MotionEventActions.Cancel:
-				_longPressTimer?.Stop();
+			_handler?.RemoveCallbacksAndMessages(null);
 				break;
 		}
 	
