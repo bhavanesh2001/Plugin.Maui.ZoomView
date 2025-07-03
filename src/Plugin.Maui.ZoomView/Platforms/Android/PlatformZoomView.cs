@@ -172,18 +172,15 @@ public class PlatformZoomView : FrameLayout
 				touchLastY = y;
 				scrolling = false;
 				_longPressTriggered = false;
-				_longPressTimer = new System.Timers.Timer(LongPressTimeout);
-				_longPressTimer.Elapsed += (s, args) =>
+				_handler = new Android.OS.Handler();
+				_handler.PostDelayed(() =>
 				{
-					_longPressTimer?.Stop();
 					if (!_longPressTriggered && smoothZoom == 1.0f)
 					{
 						_longPressTriggered = true;
 						LongPressed?.Invoke(this, EventArgs.Empty);
 					}
-				};
-				_longPressTimer.AutoReset = false;
-				_longPressTimer.Start();
+				}, LongPressTimeout);
 				break;
 			case MotionEventActions.Move:
 				if (scrolling || (smoothZoom > 1.0f && l > 30.0f))
