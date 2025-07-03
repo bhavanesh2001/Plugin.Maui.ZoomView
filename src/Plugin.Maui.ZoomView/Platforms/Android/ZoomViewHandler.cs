@@ -33,14 +33,21 @@ public partial class ZoomViewHandler
             return;
 
         // Remove previous event handler if any
-        // (No direct way to remove all handlers from outside, so be aware of possible multiple subscriptions)
+        if (handler._previousLongPressedHandler != null)
+        {
+            handler.PlatformView.LongPressed -= handler._previousLongPressedHandler;
+        }
+
+        // Add new event handler if command is not null
         if (view.LongPressedCommand != null)
         {
-            handler.PlatformView.LongPressed += (s, e) =>
+            EventHandler newHandler = (s, e) =>
             {
                 if (view.LongPressedCommand.CanExecute(null))
                     view.LongPressedCommand.Execute(null);
             };
+            handler.PlatformView.LongPressed += newHandler;
+            handler._previousLongPressedHandler = newHandler;
         }
     }
 }
