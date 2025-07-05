@@ -31,6 +31,13 @@ The `ZoomView` control exposes the following bindable properties:
 | `ZoomOutOnDoubleTap`  | `bool`  | `true`  | If `true`, a double-tap will reset zoom when already zoomed in. |
 
 
+## Methods
+
+| Method   | Description |
+|----------|-------------|
+| `Reset()` | Resets the zoom and position to the initial state. |
+
+
 
 
 

@@ -54,6 +54,17 @@ public class ZoomView : View, IZoomView
 		get => (float)GetValue(ZoomProperty);
 		set => SetValue(ZoomProperty, value);
 	}
+	/// <summary>
+	/// Resets the zoom and position to the initial state.
+	/// </summary>
+	public void Reset()
+	{
+		if (Handler is ZoomViewHandler handler)
+		{
+			ZoomViewHandler.MapReset(handler, this);
+		}
+	}
+
     protected override void OnBindingContextChanged()
     {
         base.OnBindingContextChanged();

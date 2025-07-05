@@ -204,6 +204,16 @@ public class PlatformZoomView : FrameLayout
 		e.SetLocation(zoomX + (x - 0.5f * Width) / zoom, zoomY + (y - 0.5f * Height) / zoom);
 		base.DispatchTouchEvent(e);
 	}
+	public void ResetZoom()
+	{
+		smoothZoom = 1.0f;
+		zoom = 1.0f;
+		smoothZoomX = Width / 2.0f;
+		smoothZoomY = Height / 2.0f;
+		zoomX = Width / 2.0f;
+		zoomY = Height / 2.0f;
+		Invalidate();
+	}
 
 	private void ProcessDoubleTocuhEvent(MotionEvent e)
 	{

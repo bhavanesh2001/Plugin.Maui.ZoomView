@@ -9,5 +9,9 @@ public partial class MainPage : ContentPage
 		InitializeComponent();
 	}
 
+    private void OnResetZoomClicked(object sender, EventArgs e)
+    {
+        MyZoomView.Reset();
+    }
 	
 }

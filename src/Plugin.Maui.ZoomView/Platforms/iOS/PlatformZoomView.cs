@@ -22,6 +22,12 @@ public class PlatformZoomView : UIScrollView
         BouncesZoom = false;
         ViewForZoomingInScrollView += GetViewForZooming!;
     }
+    public void ResetZoom()
+    {
+        SetZoomScale(1f, true);
+        // Optionally, reset content offset if needed
+        SetContentOffset(CGPoint.Empty, true);
+    }
 
     public override void LayoutSubviews()
     {
