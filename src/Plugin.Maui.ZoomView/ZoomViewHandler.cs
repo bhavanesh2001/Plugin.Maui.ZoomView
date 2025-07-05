@@ -20,11 +20,11 @@ public partial class ZoomViewHandler : ViewHandler<IZoomView, PlatformView>
     [nameof(IZoomView.ZoomInOnDoubleTap)] = MapZoomOnDoubleTap,
     [nameof(IZoomView.ZoomOutOnDoubleTap)] = MapZoomOnDoubleTap,
     [nameof(IZoomView.Reset)] = MapReset,
-    [nameof(IZoomView.LongPressedCommand)] = MapLongPressedCommand
   };
 
-  public ZoomViewHandler() : base(PropertyMapper, null)
+   
+
+    public ZoomViewHandler() : base(PropertyMapper, null)
   {
   }
-  
 }

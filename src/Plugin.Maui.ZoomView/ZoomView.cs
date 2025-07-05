@@ -1,5 +1,4 @@
 using System;
-using System.Windows.Input;
 
 namespace Plugin.Maui.ZoomView;
 
@@ -14,19 +13,6 @@ public class ZoomView : View, IZoomView
 	{
 		get => (View)GetValue(ContentProperty);
 		set => SetValue(ContentProperty, value);
-	}
-
-	// LongPressedCommand BindableProperty
-	public static readonly BindableProperty LongPressedCommandProperty =
-		BindableProperty.Create(nameof(LongPressedCommand), typeof(ICommand), typeof(ZoomView), default(ICommand));
-
-	/// <summary>
-	/// Command to execute when the view is long pressed.
-	/// </summary>
-	public ICommand LongPressedCommand
-	{
-		get => (ICommand)GetValue(LongPressedCommandProperty);
-		set => SetValue(LongPressedCommandProperty, value);
 	}
 
 	public static readonly BindableProperty ZoomInOnDoubleTapProperty =
@@ -79,15 +65,15 @@ public class ZoomView : View, IZoomView
 		}
 	}
 
-	protected override void OnBindingContextChanged()
-	{
-		base.OnBindingContextChanged();
+    protected override void OnBindingContextChanged()
+    {
+        base.OnBindingContextChanged();
 
-		if (Content is VisualElement ve)
-		{
-			ve.BindingContext = BindingContext;
-		}
-	}
+        if (Content is VisualElement ve)
+        {
+            ve.BindingContext = BindingContext;
+        }
+    }
 }
 
 public static class AppBuilderExtension

@@ -6,12 +6,6 @@ namespace Plugin.Maui.ZoomView.Platforms.iOS;
 
 public class PlatformZoomView : UIScrollView
 {
-    private EventHandler? _longPressed;
-    public event EventHandler? LongPressed
-    {
-        add { _longPressed += value; }
-        remove { _longPressed -= value; }
-    }
     ZoomViewDoubleTap? _doubleTap;
 
     public bool ZoomInOnDoubleTap;
@@ -27,23 +21,6 @@ public class PlatformZoomView : UIScrollView
         DelaysContentTouches = false;
         BouncesZoom = false;
         ViewForZoomingInScrollView += GetViewForZooming!;
-
-        // Long press gesture
-        var longPress = new UILongPressGestureRecognizer(OnLongPressed)
-        {
-            MinimumPressDuration = 2 // seconds
-        };
-        AddGestureRecognizer(longPress);
-    }
-
-    private void OnLongPressed(UILongPressGestureRecognizer recognizer)
-    {
-        if (recognizer.State == UIGestureRecognizerState.Began)
-        {
-            // Only fire long press if at default scale (not zoomed)
-            if (ZoomScale == 1f)
-                _longPressed?.Invoke(this, EventArgs.Empty);
-        }
     }
     public void ResetZoom()
     {
