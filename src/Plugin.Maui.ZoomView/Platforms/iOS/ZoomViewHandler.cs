@@ -38,4 +38,11 @@ public partial class ZoomViewHandler
        }
     }
 
+        public static void MapReset(ZoomViewHandler handler, IZoomView view,object? args)
+        {
+            if (handler?.PlatformView == null)
+                return;
+                
+            handler.PlatformView?.ResetZoom();
+        }
 }
