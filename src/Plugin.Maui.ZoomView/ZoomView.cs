@@ -59,10 +59,7 @@ public class ZoomView : View, IZoomView
 	/// </summary>
 	public void Reset()
 	{
-		if (Handler is ZoomViewHandler handler)
-		{
-			ZoomViewHandler.MapReset(handler, this);
-		}
+		Handler?.Invoke(nameof(IZoomView.Reset), EventArgs.Empty);
 	}
 
     protected override void OnBindingContextChanged()

@@ -23,7 +23,7 @@ namespace Plugin.Maui.ZoomView
             throw new NotImplementedException();
         }
 
-        public static void MapReset(ZoomViewHandler handler, IZoomView view)
+        public static void MapReset(ZoomViewHandler handler, IZoomView view,object? args)
         {
             throw new NotImplementedException();
         }
