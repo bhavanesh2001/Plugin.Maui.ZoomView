@@ -31,7 +31,7 @@ public partial class ZoomViewHandler
     {
         if (handler.IsConnected())
         {
-            handler.PlatformView?.ResetZoom();
+            handler.PlatformView.ResetZoom();
         }
     }
 }
