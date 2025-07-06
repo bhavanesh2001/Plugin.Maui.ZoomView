@@ -1,5 +1,4 @@
 using CoreGraphics;
-using NetworkExtension;
 using UIKit;
 
 namespace Plugin.Maui.ZoomView.Platforms.iOS;
@@ -9,7 +8,7 @@ public class PlatformZoomView : UIScrollView
     ZoomViewDoubleTap? _doubleTap;
 
     public bool ZoomInOnDoubleTap;
-    public bool  ZoomOutOnDoubleTap;
+    public bool ZoomOutOnDoubleTap;
     public PlatformZoomView()
     {
         this.DidZoom += ZoomAdjustmentToCenter;
@@ -25,7 +24,6 @@ public class PlatformZoomView : UIScrollView
     public void ResetZoom()
     {
         SetZoomScale(1f, true);
-        // Optionally, reset content offset if needed
         SetContentOffset(CGPoint.Empty, true);
     }
 
@@ -62,17 +60,17 @@ public class PlatformZoomView : UIScrollView
 
     public void SetupDoubleTapGesture(bool zoomInOnDoubleTap, bool zoomOutOnDoubleTap)
     {
-        if(_doubleTap is null)
+        if (_doubleTap is null)
         {
             _doubleTap = new ZoomViewDoubleTap();
-            ZoomInOnDoubleTap =  zoomInOnDoubleTap;
-            ZoomOutOnDoubleTap =zoomOutOnDoubleTap;
+            ZoomInOnDoubleTap = zoomInOnDoubleTap;
+            ZoomOutOnDoubleTap = zoomOutOnDoubleTap;
             AddGestureRecognizer(_doubleTap);
         }
         else
         {
-            ZoomInOnDoubleTap =  zoomInOnDoubleTap;
-            ZoomOutOnDoubleTap =zoomOutOnDoubleTap;
+            ZoomInOnDoubleTap = zoomInOnDoubleTap;
+            ZoomOutOnDoubleTap = zoomOutOnDoubleTap;
         }
     }
 
@@ -80,7 +78,7 @@ public class PlatformZoomView : UIScrollView
     {
         if (_doubleTap is not null)
         {
-             RemoveGestureRecognizer(_doubleTap);
+            RemoveGestureRecognizer(_doubleTap);
             _doubleTap.ShouldReceiveTouch = null;
             _doubleTap.Dispose();
             _doubleTap = null;
@@ -101,10 +99,14 @@ internal class ZoomViewDoubleTap : UITapGestureRecognizer
     private static void OnDoubleTapped(UIGestureRecognizer gesture)
     {
         if (gesture is not ZoomViewDoubleTap doubleTap)
+        {
             return;
+        }
 
         if (gesture.View is not PlatformZoomView zoomView)
+        {
             return;
+        }
 
         if (zoomView.ZoomScale > 1f && zoomView.ZoomOutOnDoubleTap)
         {

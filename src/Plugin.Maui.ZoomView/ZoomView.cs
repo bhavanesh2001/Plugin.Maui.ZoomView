@@ -1,5 +1,3 @@
-using System;
-
 namespace Plugin.Maui.ZoomView;
 
 [ContentProperty(nameof(Content))]
@@ -49,7 +47,7 @@ public class ZoomView : View, IZoomView
 	/// A value of <c>1.0f</c> represents the default (no zoom) scale.
 	/// Values greater than 1.0 zoom in.
 	/// </summary>
-	public float Zoom
+	internal float Zoom
 	{
 		get => (float)GetValue(ZoomProperty);
 		set => SetValue(ZoomProperty, value);

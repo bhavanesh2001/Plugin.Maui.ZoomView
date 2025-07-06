@@ -1,31 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace Plugin.Maui.ZoomView;
 
-namespace Plugin.Maui.ZoomView
+public partial class ZoomViewHandler
 {
-    public partial class ZoomViewHandler
+    protected override PlatformZoomView CreatePlatformView()
     {
-        protected override PlatformZoomView CreatePlatformView()
-        {
-            throw new NotImplementedException();
-        }
+        throw new NotImplementedException();
+    }
 
-        private static void MapZoomOnDoubleTap(ZoomViewHandler handler, IZoomView view)
-        {
-            throw new NotImplementedException();
-        }
+    private static void MapZoomOnDoubleTap(ZoomViewHandler handler, IZoomView view)
+    {
+        throw new NotImplementedException();
+    }
 
-        private static void MapContent(ZoomViewHandler handler, IZoomView view)
-        {
-            throw new NotImplementedException();
-        }
+    private static void MapContent(ZoomViewHandler handler, IZoomView view)
+    {
+        throw new NotImplementedException();
+    }
 
-        public static void MapReset(ZoomViewHandler handler, IZoomView view,object? args)
-        {
-            throw new NotImplementedException();
-        }
+    public static void MapReset(ZoomViewHandler handler, IZoomView view, object? args)
+    {
+        throw new NotImplementedException();
     }
 }
+

@@ -9,7 +9,6 @@ namespace Plugin.Maui.ZoomView.Platforms.Android;
 
 public class PlatformZoomView : FrameLayout
 {
-	#region  Properties
 	bool _zoomInOnDoubleTap;
 	bool _zoomInOutDoubleTap;
 	float zoom = 1.0f;
@@ -31,28 +30,30 @@ public class PlatformZoomView : FrameLayout
 	Matrix m = new Matrix();
 	Paint p = new Paint();
 	Bitmap? ch;
-	#endregion
 
-	#region  Constructor
 	public PlatformZoomView(Context context) : base(context)
 	{
 		ClipToOutline = true;
 	}
-	#endregion
 
-	#region  Override
 	public override bool DispatchTouchEvent(MotionEvent? e)
 	{
 		if (e is null)
+		{
 			return base.DispatchTouchEvent(e);
+		}
 
 		if (e.PointerCount == 1)
+		{
 			ProcessSingleTouchEvent(e);
+		}
 		else if (e.PointerCount == 2)
+		{
 			ProcessDoubleTocuhEvent(e);
+		}
 
-        PostInvalidateOnAnimation();
-        return true;
+		PostInvalidateOnAnimation();
+		return true;
 	}
 
 	protected override void DispatchDraw(Canvas canvas)
@@ -68,7 +69,9 @@ public class PlatformZoomView : FrameLayout
 						 Math.Abs(zoomY - smoothZoomY) > 0.0000001f;
 
 		if (ChildCount == 0)
+		{
 			return;
+		}
 
 		m.Reset();
 		m.SetTranslate(0.5f * Width, 0.5f * Height);
@@ -77,12 +80,14 @@ public class PlatformZoomView : FrameLayout
 					   -Clamp(0.5f * Height / zoom, zoomY, Height - 0.5f * Height / zoom));
 
 		var content = GetChildAt(0);
-		if (content == null)
+		if (content is null)
+		{
 			return;
+		}
 
 		m.PreTranslate(content.Left, content.Top);
 
-		if (animating && ch == null && content.Width > 0 && content.Height > 0)
+		if (animating && ch is null && content.Width > 0 && content.Height > 0)
 		{
 			if (content.Width * content.Height < 4096 * 4096) // Conservative guard
 			{
@@ -92,14 +97,14 @@ public class PlatformZoomView : FrameLayout
 			}
 		}
 
-		if (animating && ch != null)
+		if (animating && ch is not null)
 		{
 			p.Color = Color.White;
 			canvas.DrawBitmap(ch, m, p);
 		}
 		else
 		{
-			if (ch != null)
+			if (ch is not null)
 			{
 				ch.Dispose();
 				ch = null;
@@ -111,9 +116,11 @@ public class PlatformZoomView : FrameLayout
 			canvas.Restore();
 		}
 
-		if(animating)
-		PostInvalidateOnAnimation();
-    }
+		if (animating)
+		{
+			PostInvalidateOnAnimation();
+		}
+	}
 
 	protected override void OnLayout(bool changed, int l, int t, int r, int b)
 	{
@@ -143,9 +150,7 @@ public class PlatformZoomView : FrameLayout
 			}
 		}
 	}
-	#endregion
 
-	#region  Private
 	private void ProcessSingleTouchEvent(global::Android.Views.MotionEvent e)
 	{
 		float x = e.GetX();
@@ -269,13 +274,9 @@ public class PlatformZoomView : FrameLayout
 	private float Lerp(float a, float b, float k) => a + (b - a) * k;
 	private float Bias(float a, float b, float k) => Math.Abs(b - a) >= k ? a + k * Math.Sign(b - a) : b;
 
-	#endregion
-
-	#region  Public
 	public void SetZoomOnDoubleTap(bool zoomInOnDoubleTap, bool zoomOutonDoubleTap)
 	{
 		_zoomInOnDoubleTap = zoomInOnDoubleTap;
 		_zoomInOutDoubleTap = zoomOutonDoubleTap;
 	}
-	#endregion
 }
