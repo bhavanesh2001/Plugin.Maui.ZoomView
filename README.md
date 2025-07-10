@@ -83,6 +83,23 @@ The `ZoomView` control exposes the following bindable properties:
 
 ---
 
+## Platform Implementation Details
+
+Each platform uses native controls optimized for the best user experience:
+
+- **Android**: Custom implementation using Matrix transformations and gesture detection
+- **iOS**: Native UIScrollView with built-in zoom capabilities  
+- **Windows**: WinUI ScrollViewer with native zoom and pan support
+
+All platforms support:
+- Pinch-to-zoom gestures
+- Pan/scroll when zoomed in
+- Double-tap zoom in/out (configurable)
+- Reset to original zoom and position
+- Smooth animations and transitions
+
+---
+
 ## Contributing
 🤝 Contributions are welcome! If you encounter any issues or have suggestions for improvements, feel free to open an issue or submit a pull request.
 

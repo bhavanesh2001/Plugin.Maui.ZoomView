@@ -13,6 +13,13 @@ public partial class ZoomViewHandler
     protected override void DisconnectHandler(PlatformZoomView platformView)
     {
         platformView.Disconnect();
+        
+        // Clean up any existing content
+        if (platformView.Content != null)
+        {
+            platformView.Content = null;
+        }
+        
         base.DisconnectHandler(platformView);
     }
 
@@ -21,10 +28,20 @@ public partial class ZoomViewHandler
         if (handler.MauiContext is null) 
             throw new InvalidOperationException("MauiContext cannot be null");
 
-        if (handler.IsConnected() && view.Content is not null)
+        if (handler.IsConnected())
         {
-            var content = view.Content.ToPlatform(handler.MauiContext);
-            handler.PlatformView.Content = content;
+            // Clear existing content first
+            if (handler.PlatformView.Content != null)
+            {
+                handler.PlatformView.Content = null;
+            }
+            
+            // Set new content if available
+            if (view.Content is not null)
+            {
+                var content = view.Content.ToPlatform(handler.MauiContext);
+                handler.PlatformView.Content = content;
+            }
         }
     }
 
