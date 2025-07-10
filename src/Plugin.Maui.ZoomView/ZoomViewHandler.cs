@@ -4,6 +4,8 @@ using Microsoft.Maui.Handlers;
 using PlatformView = Plugin.Maui.ZoomView.Platforms.Android.PlatformZoomView;
 #elif IOS
 using PlatformView = Plugin.Maui.ZoomView.Platforms.iOS.PlatformZoomView;
+#elif WINDOWS
+using PlatformView = Plugin.Maui.ZoomView.Platforms.Windows.PlatformZoomView;
 #else
 using PlatformView = Plugin.Maui.ZoomView.PlatformZoomView;
 #endif

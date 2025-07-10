@@ -3,7 +3,7 @@
 
 
 ## Overview
-Plugin.Maui.ZoomView is a .NET MAUI plugin that provides a customizable zoomable view for cross-platform applications. It allows developers to easily integrate zooming functionality into their applications, supporting **Android** and **iOS** platforms.
+Plugin.Maui.ZoomView is a .NET MAUI plugin that provides a customizable zoomable view for cross-platform applications. It allows developers to easily integrate zooming functionality into their applications, supporting **Android**, **iOS**, and **Windows** platforms.
 
 
 ![ZoomView in action](https://github.com/user-attachments/assets/93c125ce-aded-4413-8187-9cea2a557b7b)
@@ -15,6 +15,7 @@ Plugin.Maui.ZoomView is a .NET MAUI plugin that provides a customizable zoomable
 |----------------|----------------|
 | 🤖 **Android**  | ✅ Supported   |
 | 🍎 **iOS**      | ✅ Supported   |
+| 🪟 **Windows**  | ✅ Supported   |
 
 
 ---
@@ -79,6 +80,23 @@ The `ZoomView` control exposes the following bindable properties:
    ```
 > ⚠️ **Note:**  
 > `ZoomView` is best suited for non-interactive content like `Image`, `Label`, or static custom views. While interactive controls (e.g., `Entry`, `Editor`, `Button`) can be placed inside, they may not behave reliably during zoom or pan. Use with caution.
+
+---
+
+## Platform Implementation Details
+
+Each platform uses native controls optimized for the best user experience:
+
+- **Android**: Custom implementation using Matrix transformations and gesture detection
+- **iOS**: Native UIScrollView with built-in zoom capabilities  
+- **Windows**: WinUI ScrollViewer with native zoom and pan support
+
+All platforms support:
+- Pinch-to-zoom gestures
+- Pan/scroll when zoomed in
+- Double-tap zoom in/out (configurable)
+- Reset to original zoom and position
+- Smooth animations and transitions
 
 ---
 
