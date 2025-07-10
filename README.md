@@ -3,7 +3,7 @@
 
 
 ## Overview
-Plugin.Maui.ZoomView is a .NET MAUI plugin that provides a customizable zoomable view for cross-platform applications. It allows developers to easily integrate zooming functionality into their applications, supporting **Android** and **iOS** platforms.
+Plugin.Maui.ZoomView is a .NET MAUI plugin that provides a customizable zoomable view for cross-platform applications. It allows developers to easily integrate zooming functionality into their applications, supporting **Android**, **iOS**, and **Windows** platforms.
 
 
 ![ZoomView in action](https://github.com/user-attachments/assets/93c125ce-aded-4413-8187-9cea2a557b7b)
@@ -15,6 +15,7 @@ Plugin.Maui.ZoomView is a .NET MAUI plugin that provides a customizable zoomable
 |----------------|----------------|
 | 🤖 **Android**  | ✅ Supported   |
 | 🍎 **iOS**      | ✅ Supported   |
+| 🪟 **Windows**  | ✅ Supported   |
 
 
 ---
