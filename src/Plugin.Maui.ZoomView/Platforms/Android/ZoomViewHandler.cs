@@ -34,4 +34,12 @@ public partial class ZoomViewHandler
             handler.PlatformView.ResetZoom();
         }
     }
+    
+    public static void MapZoom(ZoomViewHandler handler, IZoomView view)
+    {
+        if (handler.IsConnected())
+        {
+            handler.PlatformView.SmoothZoomTo(view.Zoom, (float)view.Content.Width / 2.0f, (float)view.Content.Height / 2.0f);
+        }
+    }
 }

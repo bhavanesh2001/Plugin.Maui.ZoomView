@@ -39,7 +39,7 @@ public class ZoomView : View, IZoomView
 		set => SetValue(ZoomOutOnDoubleTapProperty, value);
 	}
 
-	public static BindableProperty ZoomProperty =
+	public static readonly BindableProperty ZoomProperty =
 		BindableProperty.Create(nameof(Zoom), typeof(float), typeof(ZoomView), 1.0f);
 
 	/// <summary>
@@ -47,7 +47,7 @@ public class ZoomView : View, IZoomView
 	/// A value of <c>1.0f</c> represents the default (no zoom) scale.
 	/// Values greater than 1.0 zoom in.
 	/// </summary>
-	internal float Zoom
+	public float Zoom
 	{
 		get => (float)GetValue(ZoomProperty);
 		set => SetValue(ZoomProperty, value);

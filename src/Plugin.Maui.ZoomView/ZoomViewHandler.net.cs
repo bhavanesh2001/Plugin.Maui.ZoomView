@@ -16,6 +16,11 @@ public partial class ZoomViewHandler
     {
         throw new NotImplementedException();
     }
+    
+    private static void MapZoom(ZoomViewHandler handler, IZoomView view)
+    {
+        throw new NotImplementedException();
+    }
 
     public static void MapReset(ZoomViewHandler handler, IZoomView view, object? args)
     {

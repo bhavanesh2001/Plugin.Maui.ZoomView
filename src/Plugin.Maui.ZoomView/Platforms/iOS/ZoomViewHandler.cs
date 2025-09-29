@@ -44,4 +44,12 @@ public partial class ZoomViewHandler
             handler.PlatformView.ResetZoom();
         }
     }
+    
+    public static void MapZoom(ZoomViewHandler handler, IZoomView view)
+    {
+        if (handler.IsConnected())
+        {
+            handler.PlatformView.SetZoomScale(view.Zoom, false);
+        }
+    }
 }

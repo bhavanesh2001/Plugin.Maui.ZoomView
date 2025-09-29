@@ -20,6 +20,13 @@ public interface IZoomView: IView
     /// Gets or sets a value indicating whether a double-tap gesture should reset the zoom level
     /// </summary>
     public bool ZoomOutOnDoubleTap {get; set;}
+    
+    /// <summary>
+    /// Gets or sets the current zoom level applied to the content.
+    /// A value of <c>1.0f</c> represents the default (no zoom) scale.
+    /// Values greater than 1.0 zoom in.
+    /// </summary>
+    public float Zoom {get; set;}
 
 
     /// <summary>
